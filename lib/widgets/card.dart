@@ -25,6 +25,36 @@ class CardPrimeVPN extends StatelessWidget {
                 padding: const EdgeInsets.all(20.0),
                 child: Image.asset(country.image),
               ),
+              Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10, right: 70),
+                    child: Text(
+                      country.name,
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 15),
+                    child: Row(
+                      children: [
+                        Text(
+                          "IP ${country.ip}",
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(width: 125),
+              IconButton(onPressed: () {}, icon: Icon(Icons.arrow_forward_ios)),
             ],
           ),
         ),

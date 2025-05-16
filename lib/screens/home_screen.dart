@@ -20,37 +20,59 @@ class MyHomePage extends StatelessWidget {
       backgroundColor: Color.fromARGB(255, 255, 255, 255),
       body: SafeArea(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Padding(
               padding: const EdgeInsets.only(top: 20),
               child: CardPrimeVPN(country: countries[0]),
             ),
             Center(
-              child: Padding(
-                padding: const EdgeInsets.only(bottom: 90),
-                child: SizedBox(
-                  width: 150,
-                  height: 50,
-                  child: ElevatedButton(
+              child: SizedBox(
+                width: 370,
+                height: 370,
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 50),
+                  child: SvgPicture.asset("assets/images/world map.svg"),
+                ),
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 230),
+                  child: IconButton(
                     onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromARGB(222, 149, 67, 255),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                    child: Text(
-                      "Connection",
-                      style: TextStyle(
-                        fontSize: 17,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
+                    icon: SvgPicture.asset(
+                      "assets/images/settings.svg",
+                      width: 28,
+                      height: 28,
                     ),
                   ),
                 ),
-              ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 230),
+                  child: IconButton(
+                    onPressed: () {},
+                    icon: SvgPicture.asset(
+                      "assets/images/home.svg",
+                      width: 28,
+                      height: 28,
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 230),
+                  child: IconButton(
+                    onPressed: () {},
+                    icon: SvgPicture.asset(
+                      "assets/images/profile.svg",
+                      width: 28,
+                      height: 28,
+                    ),
+                  ),
+                ),
+              ],
             ),
           ],
         ),
