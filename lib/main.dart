@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_app1/screens/home_screen.dart';
+import 'package:food_app1/screens/setting_screen.dart';
 import 'package:food_app1/widgets/card.dart';
 
 void main() {
@@ -11,6 +12,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false, home: MyHomePage());
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: SettingScreen(),
+    );
   }
 }
