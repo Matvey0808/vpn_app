@@ -54,7 +54,12 @@ class CardPrimeVPN extends StatelessWidget {
                 ],
               ),
               SizedBox(width: 125),
-              IconButton(onPressed: () {}, icon: Icon(Icons.arrow_forward_ios)),
+              IconButton(
+                splashColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                onPressed: () {},
+                icon: Icon(Icons.arrow_forward_ios),
+              ),
             ],
           ),
         ),

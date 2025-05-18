@@ -114,17 +114,17 @@ class _MyHomePageState extends State<MyHomePage> {
     required bool isActive,
     required VoidCallback onPressed,
   }) {
-    return IconButton(
-      splashColor: Colors.transparent,
-      highlightColor: Colors.transparent,
-      padding: EdgeInsets.zero,
-      constraints: const BoxConstraints(),
-      onPressed: onPressed,
-      icon: SvgPicture.asset(
-        iconPath,
-        width: 28,
-        height: 28,
-        color: isActive ? Colors.purple[500] : Colors.blueGrey,
+    return GestureDetector(
+      onTap: onPressed,
+      child: AnimatedScale(
+        duration: Duration(milliseconds: 200),
+        scale: isActive ? 1.2 : 1.0,
+        child: SvgPicture.asset(
+          iconPath,
+          width: 28,
+          height: 28,
+          color: isActive ? Colors.purple[500] : Colors.blueGrey,
+        ),
       ),
     );
   }
