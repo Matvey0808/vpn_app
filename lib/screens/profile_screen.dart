@@ -5,6 +5,10 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(title: Text("Профиль")));
+    return const SafeArea(
+      child: Center(
+        child: Text('Экран профиля', style: TextStyle(fontSize: 24)),
+      ),
+    );
   }
 }

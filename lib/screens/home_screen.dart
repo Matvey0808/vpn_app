@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:food_app1/models/model1.dart';
+import 'package:food_app1/screens/profile_screen.dart';
+import 'package:food_app1/screens/setting_screen.dart';
 import 'package:food_app1/widgets/card.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -14,8 +16,8 @@ class _MyHomePageState extends State<MyHomePage> {
   int _currentIndex = 0;
   final List<Widget> _screens = [
     _buildHomeScreen(),
-    _buildProfileScreen(),
-    _buildSettingsScreen(),
+    ProfileScreen(),
+    SettingsScreen(),
   ];
 
   @override
@@ -27,7 +29,6 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  // AppBar только для главного экрана
   AppBar _buildAppBar() {
     return AppBar(
       title: SvgPicture.asset(
@@ -59,24 +60,6 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
         ],
-      ),
-    );
-  }
-
-  // Экран профиля
-  static Widget _buildProfileScreen() {
-    return const SafeArea(
-      child: Center(
-        child: Text('Экран профиля', style: TextStyle(fontSize: 24)),
-      ),
-    );
-  }
-
-  // Экран настроек
-  static Widget _buildSettingsScreen() {
-    return const SafeArea(
-      child: Center(
-        child: Text('Экран настроек', style: TextStyle(fontSize: 24)),
       ),
     );
   }
