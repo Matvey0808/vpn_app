@@ -11,100 +11,120 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int isActive = 1;
+  int _currentIndex = 0;
+  final List<Widget> _screens = [
+    _buildHomeScreen(),
+    _buildProfileScreen(),
+    _buildSettingsScreen(),
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: SvgPicture.asset(
-          "assets/images/Prime VPN.svg",
-          width: 20,
-          height: 20,
-        ),
+      appBar: _currentIndex == 0 ? _buildAppBar() : null,
+      body: _screens[_currentIndex],
+      bottomNavigationBar: _buildBottomNavBar(),
+    );
+  }
+
+  // AppBar только для главного экрана
+  AppBar _buildAppBar() {
+    return AppBar(
+      title: SvgPicture.asset(
+        "assets/images/Prime VPN.svg",
+        width: 20,
+        height: 20,
       ),
-      body: SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 20),
-              child: CardPrimeVPN(country: countries[0]),
-            ),
-            Center(
-              child: SizedBox(
-                width: 370,
-                height: 370,
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 50),
-                  child: SvgPicture.asset("assets/images/world map.svg"),
-                ),
+    );
+  }
+
+  // Главный экран
+  static Widget _buildHomeScreen() {
+    return SafeArea(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 20),
+            child: CardPrimeVPN(country: countries[0]),
+          ),
+          Center(
+            child: SizedBox(
+              width: 370,
+              height: 370,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 50),
+                child: SvgPicture.asset("assets/images/world map.svg"),
               ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 230),
-                  child: IconButton(
-                    splashColor: Colors.transparent,
-                    highlightColor: Colors.transparent,
-                    onPressed: () {
-                      setState(() {
-                        isActive = 3;
-                      });
-                    },
-                    icon: SvgPicture.asset(
-                      "assets/images/settings.svg",
-                      width: 28,
-                      height: 28,
-                      color:
-                          isActive == 3 ? Colors.purple[500] : Colors.blueGrey,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 230),
-                  child: IconButton(
-                    splashColor: Colors.transparent,
-                    highlightColor: Colors.transparent,
-                    onPressed: () {
-                      setState(() {
-                        isActive = 1;
-                      });
-                    },
-                    icon: SvgPicture.asset(
-                      "assets/images/home.svg",
-                      color:
-                          isActive == 1 ? Colors.purple[500] : Colors.blueGrey,
-                      width: 28,
-                      height: 28,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 230),
-                  child: IconButton(
-                    splashColor: Colors.transparent,
-                    highlightColor: Colors.transparent,
-                    onPressed: () {
-                      setState(() {
-                        isActive = 2;
-                      });
-                    },
-                    icon: SvgPicture.asset(
-                      "assets/images/profile.svg",
-                      color:
-                          isActive == 2 ? Colors.purple[500] : Colors.blueGrey,
-                      width: 28,
-                      height: 28,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  // Экран профиля
+  static Widget _buildProfileScreen() {
+    return const SafeArea(
+      child: Center(
+        child: Text('Экран профиля', style: TextStyle(fontSize: 24)),
+      ),
+    );
+  }
+
+  // Экран настроек
+  static Widget _buildSettingsScreen() {
+    return const SafeArea(
+      child: Center(
+        child: Text('Экран настроек', style: TextStyle(fontSize: 24)),
+      ),
+    );
+  }
+
+  // Навигационная панель
+  Widget _buildBottomNavBar() {
+    return SizedBox(
+      height: 80,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          _buildNavButton(
+            iconPath: "assets/images/profile.svg",
+            isActive: _currentIndex == 1,
+            onPressed: () => setState(() => _currentIndex = 1),
+          ),
+          _buildNavButton(
+            iconPath: "assets/images/home.svg",
+            isActive: _currentIndex == 0,
+            onPressed: () => setState(() => _currentIndex = 0),
+          ),
+          _buildNavButton(
+            iconPath: "assets/images/settings.svg",
+            isActive: _currentIndex == 2,
+            onPressed: () => setState(() => _currentIndex = 2),
+          ),
+        ],
+      ),
+    );
+  }
+
+  // Кнопка навигации
+  Widget _buildNavButton({
+    required String iconPath,
+    required bool isActive,
+    required VoidCallback onPressed,
+  }) {
+    return IconButton(
+      splashColor: Colors.transparent,
+      highlightColor: Colors.transparent,
+      padding: EdgeInsets.zero,
+      constraints: const BoxConstraints(),
+      onPressed: onPressed,
+      icon: SvgPicture.asset(
+        iconPath,
+        width: 28,
+        height: 28,
+        color: isActive ? Colors.purple[500] : Colors.blueGrey,
       ),
     );
   }
